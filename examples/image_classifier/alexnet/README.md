@@ -35,8 +35,8 @@ curl http://127.0.0.1:8080/predictions/alexnet -T ./serve/examples/image_classif
    example_input = torch.rand(1, 3, 224, 224)
    traced_script_module = torch.jit.trace(model, example_input)
    traced_script_module.save("alexnet.pt")
-   ```  
- 
+   ```
+
 * Use following commands to register alexnet torchscript model on TorchServe and run image prediction
 
     ```bash

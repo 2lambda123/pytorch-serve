@@ -4,6 +4,7 @@ Input Request inside Torchserve.
 """
 import json
 import logging
+
 from .base import BaseEnvelope
 
 logger = logging.getLogger(__name__)
@@ -28,7 +29,6 @@ class KServeEnvelope(BaseEnvelope):
 
         # If the KF Transformer and Explainer sends in data as bytesarray
         if isinstance(data, (bytes, bytearray)):
-
             data = data.decode()
             data = json.loads(data)
             logger.debug("Bytes array is %s", data)

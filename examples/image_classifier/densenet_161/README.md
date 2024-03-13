@@ -35,8 +35,8 @@ model.eval()
 example_input = torch.rand(1, 3, 224, 224)
 traced_script_module = torch.jit.trace(model, example_input)
 traced_script_module.save("densenet161.pt")
-``` 
- 
+```
+
 * Use following commands to register Densenet161 torchscript model on TorchServe and run image prediction
 
 ```bash

@@ -14,7 +14,6 @@ class NearRealTimeVideoHandler(ImageClassifier):
         super(NearRealTimeVideoHandler, self).__init__()
 
     def preprocess(self, data):
-
         images = []
         for row in data:
             imgs = row.get("data") or row.get("body")
@@ -37,7 +36,6 @@ class NearRealTimeVideoHandler(ImageClassifier):
         return torch.stack(images).to(self.device)
 
     def postprocess(self, data):
-
         ps = F.softmax(data, dim=1)
         probs, classes = torch.topk(ps, self.topk, dim=1)
         probs = probs.tolist()

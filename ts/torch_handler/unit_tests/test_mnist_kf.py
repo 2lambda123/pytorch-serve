@@ -31,7 +31,6 @@ image_processing = transforms.Compose(
 
 @pytest.fixture(scope="module")
 def image_bytes():
-
     with open(
         REPO_DIR.joinpath("examples/image_classifier/mnist/test_data/0.png"), "rb"
     ) as fin:
