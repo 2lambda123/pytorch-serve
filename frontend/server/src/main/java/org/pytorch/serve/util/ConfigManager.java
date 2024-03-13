@@ -2,6 +2,7 @@ package org.pytorch.serve.util;
 
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import io.github.pixee.security.SystemCommand;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
@@ -837,7 +838,7 @@ public final class ConfigManager {
                 }
             } else {
                 Process process =
-                        Runtime.getRuntime().exec("nvidia-smi --query-gpu=index --format=csv");
+                        SystemCommand.runCommand(Runtime.getRuntime(), "nvidia-smi --query-gpu=index --format=csv");
                 int ret = process.waitFor();
                 if (ret != 0) {
                     return 0;

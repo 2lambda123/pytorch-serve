@@ -1,5 +1,6 @@
 package org.pytorch.serve.wlm;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,7 +86,7 @@ public class WorkerLifeCycle {
         logger.debug("launcherAvailable cmdline: {}", cmd.toString());
 
         try {
-            Process processLauncher = Runtime.getRuntime().exec(cmdList);
+            Process processLauncher = SystemCommand.runCommand(Runtime.getRuntime(), cmdList);
             int ret = processLauncher.waitFor();
             launcherAvailable = (ret == 0);
         } catch (IOException | InterruptedException e) {
@@ -174,7 +175,7 @@ public class WorkerLifeCycle {
             logger.debug("Worker cmdline: {}", argl.toString());
 
             synchronized (this) {
-                process = Runtime.getRuntime().exec(args, envs, modelPath);
+                process = SystemCommand.runCommand(Runtime.getRuntime(), args, envs, modelPath);
 
                 String threadName =
                         "W-" + port + '-' + model.getModelVersionName().getVersionedModelName();
@@ -247,7 +248,7 @@ public class WorkerLifeCycle {
             logger.debug("Worker cmdline: {}", argl.toString());
 
             synchronized (this) {
-                process = Runtime.getRuntime().exec(args, envp, modelPath);
+                process = SystemCommand.runCommand(Runtime.getRuntime(), args, envp, modelPath);
 
                 String threadName =
                         "W-" + port + '-' + model.getModelVersionName().getVersionedModelName();
