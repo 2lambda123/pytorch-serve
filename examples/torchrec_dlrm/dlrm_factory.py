@@ -24,7 +24,6 @@ from torchrec.modules.embedding_modules import EmbeddingBagCollection
 
 
 def create_default_model_config():
-
     return DLRMModelConfig(
         dense_arch_layer_sizes=[512, 256, 64],
         dense_in_features=len(DEFAULT_INT_NAMES),
@@ -64,7 +63,6 @@ def create_default_model_config():
 
 class DLRMFactory(type):
     def __new__(cls, model_config=None):
-
         # We use only a single GPU for this example
         world_size = 1
 

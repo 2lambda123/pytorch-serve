@@ -1,7 +1,9 @@
-from ts.torch_handler.image_classifier import ImageClassifier
 import base64
 
-labels = ['cat', 'dog']
+from ts.torch_handler.image_classifier import ImageClassifier
+
+labels = ["cat", "dog"]
+
 
 class CatDogClassifier(ImageClassifier):
     def preprocess(self, data):

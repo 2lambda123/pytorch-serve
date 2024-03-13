@@ -1,8 +1,7 @@
 import torch
 from torchaudio.pipelines import EMFORMER_RNNT_BASE_LIBRISPEECH
 
-
-jit_model = 'decoder_jit.pt'
+jit_model = "decoder_jit.pt"
 model = EMFORMER_RNNT_BASE_LIBRISPEECH.get_decoder()
 
 model.eval()
@@ -10,4 +9,3 @@ model.eval()
 mj = torch.jit.script(model)
 
 mj.save(jit_model)
-

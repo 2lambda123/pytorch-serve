@@ -4,7 +4,6 @@ from functools import partial
 
 import aiohttp
 import torch
-
 from torchdata.datapipes.iter import Decompressor, FileLister, FileOpener
 
 # Batch_Size to kept 1 and letting torchserver to do batch inference
@@ -17,6 +16,7 @@ BATCH_TOTAL_TASKS = 100
 TOTAL_INFERENCE_CALLS = BATCH_TOTAL_TASKS * 2
 # MNIST image size
 IMAGE_SIZE = (28, 28)
+
 
 # Loop through the dataset
 async def iterate_dataset():

@@ -1,10 +1,10 @@
-import json
 import base64
 
+
 def pre_processing(data, context):
-    '''
+    """
     Empty node as a starting node since the DAG doesn't support multiple start nodes
-    '''
+    """
     if data is None:
         return data
     b64_data = []
