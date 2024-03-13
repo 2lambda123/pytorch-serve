@@ -12,7 +12,6 @@ from requests_futures.sessions import FuturesSession
 
 
 def read_frames(args):
-
     # Create a VideoCapture object and read from input file
     # If the input is the camera, pass 0 instead of the video file name
 
@@ -35,7 +34,6 @@ def read_frames(args):
         # Capture frame-by-frame
         ret, frame = cap.read()
         if ret == True:
-
             # Encode the frame into byte data
             data = cv2.imencode(".jpg", frame)[1].tobytes()
             queue.append(data)
@@ -59,7 +57,6 @@ def read_frames(args):
 
 
 def send_frames(payload, snd_cnt, session):
-
     if args.client_batching:
         snd_cnt += len(payload)
         payload = json.dumps(payload)
@@ -72,7 +69,6 @@ def send_frames(payload, snd_cnt, session):
 
 
 def calculate_fps(start_time, snd_cnt):
-
     end_time = time.time()
     if args.client_batching:
         fps = 1.0 * args.batch_size / (end_time - start_time)
@@ -88,7 +84,6 @@ def calculate_fps(start_time, snd_cnt):
 
 
 def batch_and_send_frames(args):
-
     # Initialize variables
     count, exit_cnt, snd_cnt, log_cnt = 0, 0, 0, 20
     payload, futures = {}, []
@@ -97,7 +92,6 @@ def batch_and_send_frames(args):
     session = FuturesSession()
 
     while True:
-
         # Exit condition for the while loop. Need a better logic
         if len(queue) == 0:
             exit_cnt += 1
@@ -117,7 +111,6 @@ def batch_and_send_frames(args):
                 count += 1
 
             if count >= args.batch_size:
-
                 response, snd_cnt = send_frames(payload, snd_cnt, session)
 
                 if snd_cnt % log_cnt == 0:
@@ -167,7 +160,6 @@ def batch_and_send_frames(args):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--batch_size",

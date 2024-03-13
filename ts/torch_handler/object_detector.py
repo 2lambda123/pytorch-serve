@@ -2,11 +2,12 @@
 Module for object detection default handler
 """
 import torch
-from torchvision import transforms
-from torchvision import __version__ as torchvision_version
 from packaging import version
-from .vision_handler import VisionHandler
+from torchvision import __version__ as torchvision_version
+from torchvision import transforms
+
 from ..utils.util import map_class_to_label
+from .vision_handler import VisionHandler
 
 
 class ObjectDetector(VisionHandler):

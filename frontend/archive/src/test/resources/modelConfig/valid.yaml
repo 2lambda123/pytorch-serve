@@ -10,4 +10,3 @@ parallelType: "pp" # pp: pipeline parallel; pptp: tensor+pipeline parallel
 
 torchrun:
   nproc-per-node: 4
-

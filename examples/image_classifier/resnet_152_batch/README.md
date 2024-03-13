@@ -49,7 +49,7 @@ curl http://127.0.0.1:8080/predictions/resnet152 -T examples/image_classifier/re
    example_input = torch.rand(1, 3, 224, 224)
    traced_script_module = torch.jit.trace(model, example_input)
    traced_script_module.save("resnet-152-batch.pt")
-   ```  
+   ```
 
 * For batch inference you need to set the batch size while registering the model. This can be done either through the management API or if using Torchserve 0.4.1 and above, it can be set through config.properties as well.  Here is how to register Resnet152-batch torchscript with batch size setting with management API and through config.properties. You can read more on batch inference in Torchserve [here](https://github.com/pytorch/serve/tree/master/docs/batch_inference_with_ts.md).
 
@@ -80,7 +80,7 @@ curl http://127.0.0.1:8080/predictions/resnet152 -T examples/image_classifier/re
             }\
           }\
         }
-        ```    
+        ```
         ```bash
         torchserve --start --model-store model_store  --ts-config config.properties
         ```

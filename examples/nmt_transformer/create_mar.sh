@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -gt 0 ] 
+if [ $# -gt 0 ]
 then
     if [ $1 == "en2fr_model" ] || [ $1 == "en2de_model" ] || [ $1 == "de2en_model" ]
     then
@@ -21,7 +21,7 @@ pip install Cython
 
 #download fairseq repo
 #Check if fairseq-build directory does not exist
-if [ ! -d "fairseq-build" ] 
+if [ ! -d "fairseq-build" ]
 then
     git clone --recursive https://github.com/pytorch/fairseq
     cd fairseq/
@@ -41,7 +41,7 @@ python requirements_script.py $file_name
 python setup_config_script.py $model_name
 
 #Check if a model_store directory does not exist
-if [ ! -d "model_store" ] 
+if [ ! -d "model_store" ]
 then
     mkdir model_store
 fi

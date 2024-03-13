@@ -1,5 +1,5 @@
 from ts.torch_handler.image_classifier import ImageClassifier
-import json
+
 
 class DogBreedClassifier(ImageClassifier):
     def preprocess(self, data):
@@ -21,13 +21,13 @@ class DogBreedClassifier(ImageClassifier):
             return ImageClassifier.inference(self, data, *args, **kwargs)
 
     def postprocess(self, data):
-       response = ["It's a cat!"] * len(self.is_dogs)
-       if data is None:
-           return response
-       post_resp = ImageClassifier.postprocess(self, data)
-       idx2 = 0
-       for idx, is_dog in enumerate(self.is_dogs):
-           if is_dog:
-               response[idx] = post_resp[idx2]
-               idx2+=1
-       return response
+        response = ["It's a cat!"] * len(self.is_dogs)
+        if data is None:
+            return response
+        post_resp = ImageClassifier.postprocess(self, data)
+        idx2 = 0
+        for idx, is_dog in enumerate(self.is_dogs):
+            if is_dog:
+                response[idx] = post_resp[idx2]
+                idx2 += 1
+        return response
