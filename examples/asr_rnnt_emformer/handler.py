@@ -1,4 +1,3 @@
-import json
 import os
 import tempfile
 
@@ -11,6 +10,7 @@ class ModelHandler(object):
     """
     A custom model handler implementation.
     """
+
     def __init__(self):
         self._context = None
         self.initialized = False
@@ -29,10 +29,14 @@ class ModelHandler(object):
 
         properties = context.system_properties
         model_dir = properties.get("model_dir")
-        self.device = torch.device("cuda:" + str(properties.get("gpu_id")) if torch.cuda.is_available() else "cpu")
+        self.device = torch.device(
+            "cuda:" + str(properties.get("gpu_id"))
+            if torch.cuda.is_available()
+            else "cpu"
+        )
 
         # Read model serialize/pt file
-        serialized_file = self.manifest['model']['serializedFile']
+        serialized_file = self.manifest["model"]["serializedFile"]
         model_pt_path = os.path.join(model_dir, serialized_file)
         if not os.path.isfile(model_pt_path):
             raise RuntimeError("Missing the model.pt file")
@@ -40,7 +44,6 @@ class ModelHandler(object):
         self.model = torch.jit.load(model_pt_path)
 
         self.initialized = True
-
 
     def handle(self, data, context):
         """
@@ -64,9 +67,9 @@ class ModelHandler(object):
         waveform = waveform.squeeze()
 
         feature_extractor = EMFORMER_RNNT_BASE_LIBRISPEECH.get_feature_extractor()
-        
+
         decoder = self.model
-        
+
         token_processor = EMFORMER_RNNT_BASE_LIBRISPEECH.get_token_processor()
 
         with torch.no_grad():

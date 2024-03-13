@@ -52,7 +52,7 @@ ResnetCppHandler::LoadModel(
         (*model_config_yaml_)["handler"]["model_so_path"].as<std::string>());
     c10::InferenceMode mode;
 
-    #if TORCH_VERSION_MAJOR == 2 && TORCH_VERSION_MINOR == 2    
+    #if TORCH_VERSION_MAJOR == 2 && TORCH_VERSION_MINOR == 2
       if (device->is_cuda()) {
         return std::make_pair(
           std::make_shared<torch::inductor::AOTIModelContainerRunnerCuda>(model_so_path.c_str()),

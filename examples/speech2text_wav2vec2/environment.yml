@@ -11,5 +11,5 @@ dependencies:
   - pip
   - pip:
     - torch-workflow-archiver
-    - torch-model-archiver 
-    - torchserve 
+    - torch-model-archiver
+    - torchserve

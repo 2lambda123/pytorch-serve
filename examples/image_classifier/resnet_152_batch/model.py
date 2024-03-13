@@ -1,4 +1,4 @@
-from torchvision.models.resnet import ResNet, Bottleneck
+from torchvision.models.resnet import Bottleneck, ResNet
 
 
 class ResNet152ImageClassifier(ResNet):

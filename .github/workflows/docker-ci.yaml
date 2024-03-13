@@ -40,7 +40,7 @@ jobs:
         working-directory: docker
         run: ./test_container_python_version.sh ${{ steps.image_build.outputs.IMAGE_TAG }} ${{ matrix.python-version }}
 
-      - name: Test model running in container with sample image data 
+      - name: Test model running in container with sample image data
         working-directory: docker
         run: |
           ./test_container_model_prediction.sh ${{ steps.image_build.outputs.IMAGE_TAG }}

@@ -2,7 +2,7 @@
 vgg16:
     eager_mode:
         benchmark_engine: "ab"
-        url: "https://torchserve.pytorch.org/mar_files/vgg16.mar" 
+        url: "https://torchserve.pytorch.org/mar_files/vgg16.mar"
         workers:
             - 4
         batch_delay: 100
