@@ -88,7 +88,6 @@ class TorchRecDLRMHandler(BaseHandler, ABC):
         float_features, id_list_features_lengths, id_list_features_values = [], [], []
 
         for row in data:
-
             input = row.get("data") or row.get("body")
 
             if not isinstance(input, dict):

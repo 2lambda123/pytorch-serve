@@ -1,11 +1,11 @@
 import os
 import subprocess
+from io import BytesIO
+from shutil import copy
+
 import requests
 import test_utils
-
-from shutil import copy
 from PIL import Image
-from io import BytesIO
 
 CURR_FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 REPO_ROOT_DIR = os.path.normpath(os.path.join(CURR_FILE_PATH, "..", ".."))
@@ -14,8 +14,9 @@ DCGAN_EXAMPLE_DIR = os.path.join(REPO_ROOT_DIR, "examples", "dcgan_fashiongen")
 DCGAN_MAR_FILE = os.path.join(DCGAN_EXAMPLE_DIR, "dcgan_fashiongen.mar")
 
 
-os.environ['MKL_THREADING_LAYER'] = 'GNU'
+os.environ["MKL_THREADING_LAYER"] = "GNU"
 # Work around for issue - https://github.com/pytorch/pytorch/issues/37377
+
 
 def setup_module():
     test_utils.torchserve_cleanup()
@@ -69,7 +70,9 @@ def test_model_register_unregister():
 def test_image_generation_without_any_input_constraints():
     test_utils.register_model("dcgan_fashiongen", "dcgan_fashiongen.mar")
     input_json = {}
-    response = requests.post(url="http://localhost:8080/predictions/dcgan_fashiongen", json=input_json)
+    response = requests.post(
+        url="http://localhost:8080/predictions/dcgan_fashiongen", json=input_json
+    )
     fp = BytesIO(response.content)
     img = Image.open(fp)
     # Expect a jpeg of dimension 64 x 64, it contains only 1 image by default
@@ -85,9 +88,11 @@ def test_image_generation_with_input_constraints():
         "number_of_images": 64,
         "input_gender": "Men",
         "input_category": "SHIRTS",
-        "input_pose": "id_gridfs_1"
+        "input_pose": "id_gridfs_1",
     }
-    response = requests.post(url="http://localhost:8080/predictions/dcgan_fashiongen", json=input_json)
+    response = requests.post(
+        url="http://localhost:8080/predictions/dcgan_fashiongen", json=input_json
+    )
     fp = BytesIO(response.content)
     img = Image.open(fp)
     # Expect a jpeg of dimension 530 x 530, it contains 64 images

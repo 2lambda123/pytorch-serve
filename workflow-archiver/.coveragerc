@@ -13,4 +13,3 @@ omit = */__init__.py
        workflow_archiver/manifest_components/*
        workflow_archiver/arg_parser.py
        workflow_archiver/setup.py
-

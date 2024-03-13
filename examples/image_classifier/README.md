@@ -7,4 +7,3 @@
 * [Image Classification with VGG16](vgg_16)
 * [Batch image classification with Resnet152 using custom handerl](resnet_152_batch)
 * [Digit recognition with MNIST using a custom handler](mnist)
-

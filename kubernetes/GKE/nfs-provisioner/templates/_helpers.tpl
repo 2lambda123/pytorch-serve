@@ -50,4 +50,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "nfs-provisioner.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-

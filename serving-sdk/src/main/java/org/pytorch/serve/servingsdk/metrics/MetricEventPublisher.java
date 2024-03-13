@@ -8,5 +8,3 @@ public interface MetricEventPublisher {
     void addMetricEventListener(MetricEventListener listener);
     void removeMetricEventListener(MetricEventListener listener);
 }
-
-

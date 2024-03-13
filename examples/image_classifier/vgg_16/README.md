@@ -35,8 +35,8 @@ curl http://127.0.0.1:8080/predictions/vgg16 -T ./examples/image_classifier/kitt
    example_input = torch.rand(1, 3, 224, 224)
    traced_script_module = torch.jit.trace(model, example_input)
    traced_script_module.save("vgg16.pt")
-   ```  
- 
+   ```
+
 * Use following commands to register vgg16 torchscript model on TorchServe and run image prediction
 
     ```bash
