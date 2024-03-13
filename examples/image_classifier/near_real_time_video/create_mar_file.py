@@ -19,7 +19,6 @@ def download_pth_file(output_file: str) -> None:
 
 
 def create_mar():
-
     if args.client_batching:
         cmd = [
             "torch-model-archiver",
@@ -62,7 +61,6 @@ def main():
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--client-batching",

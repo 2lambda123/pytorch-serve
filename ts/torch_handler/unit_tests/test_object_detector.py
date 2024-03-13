@@ -56,7 +56,6 @@ def model_dir(tmp_path_factory, model_name):
 
 @pytest.fixture(scope="module")
 def context(model_dir, model_name):
-
     context = MockContext(
         model_name="mnist",
         model_dir=model_dir.as_posix(),

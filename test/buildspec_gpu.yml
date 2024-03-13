@@ -26,4 +26,4 @@ phases:
 artifacts:
   files:
     - /tmp/test_exec.log
-  name: TS-NIGHTLY-REGRESSION-$(date +%Y-%m-%d) 
+  name: TS-NIGHTLY-REGRESSION-$(date +%Y-%m-%d)
