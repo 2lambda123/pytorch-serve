@@ -66,4 +66,3 @@ jobs:
         if: matrix.os != 'macos-14'
         run: |
           python test/regression_tests.py --binaries --${{ matrix.binaries }} --nightly
-
