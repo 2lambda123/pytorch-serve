@@ -25,7 +25,6 @@ def base_model_dir(tmp_path_factory):
 
 @pytest.fixture()
 def base_model_context(base_model_dir):
-
     context = MockContext(
         model_name="mnist",
         model_dir=base_model_dir.as_posix(),

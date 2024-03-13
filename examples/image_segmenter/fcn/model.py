@@ -1,7 +1,7 @@
-from torchvision.models.segmentation.fcn import FCN
-from torchvision.models import resnet
-from intermediate_layer_getter import IntermediateLayerGetter
 from fcn import FCNHead
+from intermediate_layer_getter import IntermediateLayerGetter
+from torchvision.models import resnet
+from torchvision.models.segmentation.fcn import FCN
 
 
 class FCNImageSegmenter(FCN):
@@ -10,10 +10,11 @@ class FCNImageSegmenter(FCN):
     """
 
     def __init__(self, num_classes=21, **kwargs):
-        backbone = resnet.resnet101(pretrained=True,
-                                    replace_stride_with_dilation=[False, True, True])
-        return_layers = {'layer4': 'out'}
-        return_layers['layer3'] = 'aux'
+        backbone = resnet.resnet101(
+            pretrained=True, replace_stride_with_dilation=[False, True, True]
+        )
+        return_layers = {"layer4": "out"}
+        return_layers["layer3"] = "aux"
         backbone = IntermediateLayerGetter(backbone, return_layers=return_layers)
 
         inplanes = 1024

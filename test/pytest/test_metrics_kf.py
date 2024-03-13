@@ -29,7 +29,6 @@ def teardown_module(module):
 
 
 def logs_created(no_config_snapshots=False):
-
     test_utils.start_torchserve(
         snapshot_file=snapshot_file, no_config_snapshots=no_config_snapshots
     )

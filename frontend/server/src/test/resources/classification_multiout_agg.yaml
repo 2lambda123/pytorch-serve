@@ -10,7 +10,7 @@ models:
 
     squeezenet:
       url : https://torchserve.pytorch.org/mar_files/squeezenet1_1.mar
- 
+
 dag: #can have only one start node
   pre_processing : [resnet, squeezenet]
   resnet : [aggregate_func]

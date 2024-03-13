@@ -56,7 +56,6 @@ class TokenizerModelAdapter(nn.Module):
 
 
 def main(args):
-
     # Chain preprocessing steps as defined during training.
     text_transform = T.Sequential(
         T.SentencePieceTokenizer(XLMR_SPM_MODEL_PATH),

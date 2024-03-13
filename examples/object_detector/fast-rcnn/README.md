@@ -17,7 +17,7 @@ wget https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.p
     torchserve --start --model-store model_store --models fastrcnn=fastrcnn.mar
     curl http://127.0.0.1:8080/predictions/fastrcnn -T examples/object_detector/persons.jpg
     ```
-* Note : The objects detected have scores greater than "0.5". This threshold value is set in object_detector handler. 
+* Note : The objects detected have scores greater than "0.5". This threshold value is set in object_detector handler.
 
 * Output
 
