@@ -55,8 +55,8 @@ jobs:
         if: matrix.os == 'macos-14'
         shell: bash -el {0}
         run: |
-          conda info 
-          python ts_scripts/install_dependencies.py --environment=dev 
+          conda info
+          python ts_scripts/install_dependencies.py --environment=dev
           python test/regression_tests.py --binaries --${{ matrix.binaries }} --nightly
       - name: Install dependencies
         if: matrix.os != 'macos-14'
@@ -66,4 +66,4 @@ jobs:
         if: matrix.os != 'macos-14'
         run: |
           python test/regression_tests.py --binaries --${{ matrix.binaries }} --nightly
-          
+

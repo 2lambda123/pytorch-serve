@@ -13,7 +13,7 @@
 ## Overview
 
 A key feature of TorchServe is the ability to package workflow specification (.yaml) and other workflow dependency files into a single workflow archive file (.war). This file can then be redistributed and served by anyone using TorchServe.
- 
+
 The CLI creates a `.war` file that TorchServe CLI uses to serve the workflows.
 
 The following information is required to create a standalone workflow archive:
@@ -94,4 +94,4 @@ A .yaml file specifying workflow DAG specification
 
 ### Handler
 
-Handler is path to a py file to handle workflow's pre-process and post-process functions. 
+Handler is path to a py file to handle workflow's pre-process and post-process functions.

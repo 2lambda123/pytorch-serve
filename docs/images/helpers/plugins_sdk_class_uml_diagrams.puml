@@ -58,8 +58,8 @@ Endpoint : +String description()
 
 
 enum EndpointTypes {
-  NONE, 
-  INFERENCE, 
+  NONE,
+  INFERENCE,
   MANAGEMENT
 }
 

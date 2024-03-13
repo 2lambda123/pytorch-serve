@@ -1,10 +1,10 @@
 # TorchServe Workflows
 
-TorchServe can be used for serving ensemble of Pytorch models packaged as mar files and Python functions through Workflow APIs. 
+TorchServe can be used for serving ensemble of Pytorch models packaged as mar files and Python functions through Workflow APIs.
 
 It utilizes [REST based APIs](rest_api.md) for workflow management and predictions.
 
-A Workflow is served on TorchServe using a workflow-archive(.war) which comprises of following: 
+A Workflow is served on TorchServe using a workflow-archive(.war) which comprises of following:
 
 ## Workflow Specification file
 
@@ -31,7 +31,7 @@ models:
        min-workers: 1   #override the global params
        max-workers: 2
        batch-size: 4
-     
+
     m2:
        url : model2.mar
 
@@ -41,7 +41,7 @@ models:
 
     m4:
       url : model4.mar
- 
+
 dag:
   pre_processing : [m1]
   m1 : [m2]

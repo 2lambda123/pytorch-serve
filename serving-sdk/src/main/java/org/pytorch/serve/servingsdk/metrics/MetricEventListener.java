@@ -12,4 +12,3 @@ public interface MetricEventListener {
      */
     void handle(MetricLogEvent event);
 }
-

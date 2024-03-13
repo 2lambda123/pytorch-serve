@@ -1,10 +1,9 @@
 import logging
-from dataclasses import dataclass
-from typing import Dict, List, Union
+from typing import Dict, Union
 
 import torch
 import torch.distributed as dist
-from torch import nn, Tensor
+from torch import Tensor, nn
 from torch.distributed._shard.sharded_tensor.api import ShardedTensor
 from torch.distributed._tensor import DeviceMesh, DTensor
 from torch.distributed.fsdp._fsdp_extensions import (
@@ -12,11 +11,13 @@ from torch.distributed.fsdp._fsdp_extensions import (
     _ext_chunk_tensor,
 )
 
+
 def _verify_fqn_across_ranks(fqn, grp_gloo):
     olist = [None for _ in range(dist.get_world_size())]
     dist.all_gather_object(olist, fqn, group=grp_gloo)
     assert len(set(olist)) == 1
     assert olist[0] == fqn
+
 
 def _all_gather_into_list(data_tensor, model_parallel_group):
     tensor_list = [
@@ -39,7 +40,8 @@ def _is_tp_sharded(fqn: str) -> bool:
         or "output" in fqn
         or "tok_embeddings" in fqn
     )
-    
+
+
 def _unshard_param(
     ref_state_dict,
     fqn,
@@ -47,7 +49,7 @@ def _unshard_param(
     grp_gloo,
     data_tensor,
     tp_sharded_shape,
-    ):
+):
     """
     Unshards the row or col-wise sharded parameter.
     For rowwise, this is done by reshaping into the local shape, allgathering,
@@ -55,7 +57,7 @@ def _unshard_param(
     This is done via vstack and column_stack respectively.
     """
     mp_size = dist.get_world_size(model_parallel_group)
-   
+
     ref_shape = ref_state_dict[fqn].shape
     assert (
         ref_shape[0] == tp_sharded_shape[0] or ref_shape[1] == tp_sharded_shape[1]
@@ -113,7 +115,7 @@ def build_distributed_state_dict_from_consolidated(
 
     Example usage::
         ```
-        
+
         MODEL_PARALLEL_SIZE = 8
         ckpt_path = get_consolidated_ckpt_path(
             ckpt_dir=PTH_65b, mp_rank=local_rank, mp_size=MODEL_PARALLEL_SIZE
@@ -160,7 +162,6 @@ def build_distributed_state_dict_from_consolidated(
             dist_state_dict[fqn] = tensor.clone()
             continue
         if _is_tp_sharded(fqn):
-        
             tensor, _ = _unshard_param(
                 ref_state_dict,
                 fqn,
@@ -170,16 +171,14 @@ def build_distributed_state_dict_from_consolidated(
                 tensor.shape,
             )
         if use_dtensor:
-       
             assert mesh is not None
             tensor = _ext_chunk_dtensor(
                 tensor=tensor.contiguous(),
                 rank=dist.get_rank(),
                 device_mesh=mesh,
             )
-         
+
         else:
-         
             tensor = _ext_chunk_tensor(
                 tensor=tensor.contiguous(),
                 rank=dist.get_rank(),
@@ -187,9 +186,8 @@ def build_distributed_state_dict_from_consolidated(
                 num_devices_per_node=torch.cuda.device_count(),  # TODO: this is not accurate if user set CUDA_VISIBLE_DEVICES
                 pg=dist.distributed_c10d._get_default_group(),  # TODO: this should be the FSDP process group
             )
-     
+
         dist_state_dict[fqn] = tensor
     dtypes = {v.dtype for v in dist_state_dict.values()}
     logging.warning(f"Made dist_state_dict with dtypes {dtypes}")
     return dist_state_dict
-
