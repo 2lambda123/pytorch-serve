@@ -18,6 +18,3 @@ handler:
     top_p: 0.9
     manual_seed: 40
     mode: "chat" #choices are text_completion, chat
-
-
-

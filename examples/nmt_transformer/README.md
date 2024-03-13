@@ -20,7 +20,7 @@ _NOTE: This example currently works with Py36 only due to fairseq dependency on 
     ./create_mar.sh en2fr_model
     ```
     The above command will create a "model_store" directory in the current working directory and generate TransformerEn2Fr.mar file.
-	
+
 * To generate the model archive (.mar) file for English-to-German translation model using following command
 
     ```bash
@@ -35,7 +35,7 @@ _NOTE: This example currently works with Py36 only due to fairseq dependency on 
     torchserve --start --model-store model_store --ts-config config.properties
     ```
 
-* Use [Management API](https://github.com/pytorch/serve/blob/master/docs/management_api.md#management-api) to register the model with one initial worker   
+* Use [Management API](https://github.com/pytorch/serve/blob/master/docs/management_api.md#management-api) to register the model with one initial worker
 	For English-to-French model
     ```bash
     curl -X POST "http://localhost:8081/models?initial_workers=1&synchronous=true&url=TransformerEn2Fr.mar"
@@ -51,7 +51,7 @@ _NOTE: This example currently works with Py36 only due to fairseq dependency on 
     }
 	```
 
-* To get the inference use the following curl command  
+* To get the inference use the following curl command
 	For English-to-French model
     ```bash
     curl http://127.0.0.1:8080/predictions/TransformerEn2Fr -T model_input/sample.txt | json_pp
@@ -90,7 +90,7 @@ requests before this timer time's out, it sends what ever requests that were rec
     torchserve --start --model-store model_store --ts-config config.properties
     ```
 
-* Now let's launch English_to_French translation model, which we have built to handle batch inference. 
+* Now let's launch English_to_French translation model, which we have built to handle batch inference.
 In this example, we are going to launch 1 worker which handles a `batch size` of 4 with a `max_batch_delay` of 10s.
 
     ```bash
@@ -100,9 +100,9 @@ In this example, we are going to launch 1 worker which handles a `batch size` of
 * Run batch inference command to test the model.
 
     ```bash
-    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample1.txt& 
-    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample2.txt& 
-    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample3.txt& 
+    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample1.txt&
+    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample2.txt&
+    curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample3.txt&
     curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2Fr -T ./model_input/sample4.txt&
     {
         "input" : "Hello World !!!\n",
@@ -130,7 +130,7 @@ In this example, we are going to launch 1 worker which handles a `batch size` of
     torchserve --start --model-store model_store --ts-config config.properties
     ```
 
-* Now let's launch English_to_French translation model, which we have built to handle batch inference. 
+* Now let's launch English_to_French translation model, which we have built to handle batch inference.
 In this example, we are going to launch 1 worker which handles a `batch size` of 4 with a `max_batch_delay` of 10s.
 
     ```bash
@@ -140,9 +140,9 @@ In this example, we are going to launch 1 worker which handles a `batch size` of
 * Run batch inference command to test the model.
 
     ```bash
-	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample1.txt& 
-	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample2.txt& 
-	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample3.txt& 
+	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample1.txt&
+	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample2.txt&
+	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample3.txt&
 	curl -X POST http://127.0.0.1:8080/predictions/TransformerEn2De -T ./model_input/sample4.txt&
     {
         "input" : "Hello World !!!\n",

@@ -42,5 +42,3 @@ public interface BaseMetric {
      */
     String getTimestamp();
 }
-
-

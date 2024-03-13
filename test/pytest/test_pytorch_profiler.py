@@ -8,19 +8,25 @@ import os
 import pathlib
 import shutil
 import subprocess
+from concurrent import futures
 
 import pytest
 import requests
-
 import test_utils
-from concurrent import futures
 
 REPO_ROOT = os.path.normpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../")
 )
-data_file_mnist = os.path.join(REPO_ROOT, "examples", "image_classifier", "mnist", "test_data", "1.png")
+data_file_mnist = os.path.join(
+    REPO_ROOT, "examples", "image_classifier", "mnist", "test_data", "1.png"
+)
 data_file_resnet = os.path.join(
-    REPO_ROOT, "examples", "image_classifier", "resnet_152_batch", "images", "kitten.jpg"
+    REPO_ROOT,
+    "examples",
+    "image_classifier",
+    "resnet_152_batch",
+    "images",
+    "kitten.jpg",
 )
 data_file_resnet_dog = os.path.join(
     REPO_ROOT, "examples", "image_classifier", "resnet_152_batch", "images", "dog.jpg"
@@ -48,7 +54,8 @@ def set_custom_handler(handler_name):
     serialized_file = os.path.join(test_utils.MODEL_STORE, "resnet152-394f9c45.pth")
     if not os.path.exists(serialized_file):
         response = requests.get(
-            "https://download.pytorch.org/models/resnet152-394f9c45.pth", allow_redirects=True
+            "https://download.pytorch.org/models/resnet152-394f9c45.pth",
+            allow_redirects=True,
         )
         assert response.status_code == 200
         with open(serialized_file, "wb") as f:
@@ -58,10 +65,21 @@ def set_custom_handler(handler_name):
     cmd = test_utils.model_archiver_command_builder(
         model_name="resnet-152-batch",
         version="1.0",
-        model_file=os.path.join(test_utils.CODEBUILD_WD, "examples", "image_classifier", "resnet_152_batch", "model.py"),
+        model_file=os.path.join(
+            test_utils.CODEBUILD_WD,
+            "examples",
+            "image_classifier",
+            "resnet_152_batch",
+            "model.py",
+        ),
         serialized_file=serialized_file,
         handler=handler_name,
-        extra_files=os.path.join(test_utils.CODEBUILD_WD, "examples", "image_classifier", "index_to_name.json"),
+        extra_files=os.path.join(
+            test_utils.CODEBUILD_WD,
+            "examples",
+            "image_classifier",
+            "index_to_name.json",
+        ),
         force=True,
     )
     print(cmd)
@@ -146,7 +164,9 @@ def test_batch_input(set_custom_handler, handler_name):
 
     def invoke_batch_input():
         data = open(data_file_resnet, "rb")
-        response = requests.post("{}/predictions/resnet152".format(TF_INFERENCE_API), data)
+        response = requests.post(
+            "{}/predictions/resnet152".format(TF_INFERENCE_API), data
+        )
         assert response.status_code == 200
         assert "tiger_cat" in json.loads(response.content)
 
