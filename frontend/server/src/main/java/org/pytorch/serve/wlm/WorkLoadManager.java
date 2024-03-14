@@ -1,5 +1,6 @@
 package org.pytorch.serve.wlm;
 
+import io.github.pixee.security.SystemCommand;
 import io.netty.channel.EventLoopGroup;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -164,7 +165,7 @@ public class WorkLoadManager {
                         boolean workerDestroyed = false;
                         try {
                             String cmd = String.format(OSUtils.getKillCmd(), workerProcess.pid());
-                            Process workerKillProcess = Runtime.getRuntime().exec(cmd, null, null);
+                            Process workerKillProcess = SystemCommand.runCommand(Runtime.getRuntime(), cmd, null, null);
                             workerDestroyed =
                                     workerKillProcess.waitFor(
                                             configManager.getUnregisterModelTimeout(),

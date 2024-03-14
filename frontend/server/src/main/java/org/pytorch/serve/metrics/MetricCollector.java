@@ -1,5 +1,6 @@
 package org.pytorch.serve.metrics;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -48,8 +49,7 @@ public class MetricCollector implements Runnable {
 
             String[] envp = EnvironmentUtils.getEnvString(workingDir.getAbsolutePath(), null, null);
             final Process p =
-                    Runtime.getRuntime()
-                            .exec(args.toArray(new String[0]), envp, workingDir); // NOPMD
+                    SystemCommand.runCommand(Runtime.getRuntime(), args.toArray(new String[0]), envp, workingDir); // NOPMD
             ModelManager modelManager = ModelManager.getInstance();
             Map<Integer, WorkerThread> workerMap = modelManager.getWorkers();
             try (OutputStream os = p.getOutputStream()) {
