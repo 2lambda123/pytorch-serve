@@ -84,26 +84,30 @@ def generate_model_archive(use_requirements=False, use_venv=False):
         force=True,
         archive_format="no-archive",
         version="1.0",
-        requirements_file=os.path.join(
-            test_utils.REPO_ROOT,
-            "test",
-            "pytest",
-            "test_data",
-            "custom_dependencies",
-            "requirements.txt",
-        )
-        if use_requirements
-        else None,
-        config_file=os.path.join(
-            test_utils.REPO_ROOT,
-            "test",
-            "pytest",
-            "test_data",
-            "custom_dependencies",
-            "model_config.yaml",
-        )
-        if use_venv
-        else None,
+        requirements_file=(
+            os.path.join(
+                test_utils.REPO_ROOT,
+                "test",
+                "pytest",
+                "test_data",
+                "custom_dependencies",
+                "requirements.txt",
+            )
+            if use_requirements
+            else None
+        ),
+        config_file=(
+            os.path.join(
+                test_utils.REPO_ROOT,
+                "test",
+                "pytest",
+                "test_data",
+                "custom_dependencies",
+                "model_config.yaml",
+            )
+            if use_venv
+            else None
+        ),
     )
 
     ModelArchiver.generate_model_archive(config)

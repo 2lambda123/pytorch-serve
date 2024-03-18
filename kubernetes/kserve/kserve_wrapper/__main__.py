@@ -1,4 +1,5 @@
 """ KServe wrapper to handler inference in the kserve_predictor """
+
 import json
 import logging
 import os

@@ -1,5 +1,6 @@
 """ The torchserve side inference end-points request are handled to
     return a KServe side response """
+
 import logging
 import os
 import pathlib

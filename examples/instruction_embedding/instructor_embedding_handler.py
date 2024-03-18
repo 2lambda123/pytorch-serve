@@ -1,6 +1,7 @@
 """
 Handler class for Instruction Embedding models (https://instructor-embedding.github.io/)
 """
+
 import logging
 
 from InstructorEmbedding import INSTRUCTOR

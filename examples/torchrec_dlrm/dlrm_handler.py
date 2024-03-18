@@ -1,6 +1,7 @@
 """
 Handler for Torchrec DLRM based recommendation system
 """
+
 import json
 import logging
 import os

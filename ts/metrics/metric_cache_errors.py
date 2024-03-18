@@ -1,6 +1,7 @@
 """
 Custom error class for Metrics Cache.
 """
+
 import yaml
 
 

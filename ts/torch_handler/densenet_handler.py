@@ -1,6 +1,7 @@
 """
 Module for image classification default handler
 """
+
 import importlib.util
 import inspect
 import io

@@ -1,6 +1,7 @@
 """
 Tests for pytorch profiler integration
 """
+
 # pylint: disable=W0613, W0621
 import glob
 import json

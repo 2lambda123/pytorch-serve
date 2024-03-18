@@ -173,9 +173,11 @@ class GptHandler(BaseHandler):
 
     def postprocess(self, y):
         return [
-            ""
-            if self.stream
-            else self.tokenizer.decode(y.tolist()[self.prompt_length :])
+            (
+                ""
+                if self.stream
+                else self.tokenizer.decode(y.tolist()[self.prompt_length :])
+            )
         ]
 
     @torch.no_grad()

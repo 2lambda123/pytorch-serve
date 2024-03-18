@@ -4,7 +4,6 @@ For this example we use an untrained model(model with random weights). More info
 https://github.com/facebookresearch/dlrm/tree/main/torchrec_dlrm/
 """
 
-
 import torch
 import torchrec.distributed as trec_dist
 from dlrm_model_config import DLRMModelConfig

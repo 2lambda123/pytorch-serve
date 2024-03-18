@@ -1,6 +1,7 @@
 """
 Module for object detection default handler
 """
+
 import torch
 from packaging import version
 from torchvision import __version__ as torchvision_version

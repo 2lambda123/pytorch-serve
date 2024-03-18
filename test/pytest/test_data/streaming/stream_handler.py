@@ -102,9 +102,9 @@ class StreamingHandler(BaseHandler):
             use_cache=True,
         )
         # Save extracted kv cache values and adjust attention mask for next call
-        self.context.cache[req_id]["encoded"][
-            "past_key_values"
-        ] = self.context.kv_cache["past_key_values"]
+        self.context.cache[req_id]["encoded"]["past_key_values"] = (
+            self.context.kv_cache["past_key_values"]
+        )
         del self.context.kv_cache["past_key_values"]
         self.context.cache[req_id]["encoded"]["input_ids"] = output.sequences
 
@@ -141,9 +141,9 @@ class StreamingHandler(BaseHandler):
 
         results = {}
         for idx, req_id in enumerate(ids):
-            self.context.cache[req_id]["encoded"][
-                "past_key_values"
-            ] = self._collect_kv_cache_of_idx_in_batch(idx)
+            self.context.cache[req_id]["encoded"]["past_key_values"] = (
+                self._collect_kv_cache_of_idx_in_batch(idx)
+            )
             self.context.cache[req_id]["encoded"]["input_ids"] = outputs.sequences[
                 idx
             ].unsqueeze(0)

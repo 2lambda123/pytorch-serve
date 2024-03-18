@@ -1,6 +1,7 @@
 """
 Interface for metric class for TS
 """
+
 import abc
 
 from ts.metrics.metric_type_enum import MetricTypes

@@ -1,6 +1,7 @@
 """
 Module for image classification default handler
 """
+
 import torch
 import torch.nn.functional as F
 from torchvision import transforms

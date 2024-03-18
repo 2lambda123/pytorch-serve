@@ -1,4 +1,5 @@
 """ Converts an image to bytesarray """
+
 import argparse
 import base64
 import json

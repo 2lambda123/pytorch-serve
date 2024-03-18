@@ -8,7 +8,6 @@ import os
 
 # noinspection PyTypeChecker
 class ArgParser(object):
-
     """
     Argument parser for torch-workflow-archiver commands
     """
