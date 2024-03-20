@@ -1,5 +1,6 @@
 """`ModelService` defines an API for base model service.
 """
+
 # pylint: disable=W0223
 
 import ast

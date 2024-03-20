@@ -1,6 +1,7 @@
 """
 Module for text classification with scriptable tokenizer
 """
+
 import logging
 from abc import ABC
 

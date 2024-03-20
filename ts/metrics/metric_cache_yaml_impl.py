@@ -1,6 +1,7 @@
 """
 Metrics Cache class for creating objects from yaml spec
 """
+
 import logging
 
 import yaml

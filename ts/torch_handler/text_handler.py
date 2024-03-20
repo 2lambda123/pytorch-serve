@@ -2,6 +2,7 @@
 Base module for all text based default handler.
 Contains various text based utility methods
 """
+
 import logging
 import os
 import re

@@ -327,12 +327,12 @@ class LlamaHandler(BaseHandler, ABC):
         for l in self.model.layers:
             for idx, (old_pad, new_pad) in enumerate(zip(old_padding, new_padding)):
                 seqlen = prompt_lengths[idx]
-                l.attention.cache_k[
-                    idx, new_pad : new_pad + seqlen
-                ] = l.attention.cache_k[idx, old_pad : old_pad + seqlen].clone()
-                l.attention.cache_v[
-                    idx, new_pad : new_pad + seqlen
-                ] = l.attention.cache_v[idx, old_pad : old_pad + seqlen].clone()
+                l.attention.cache_k[idx, new_pad : new_pad + seqlen] = (
+                    l.attention.cache_k[idx, old_pad : old_pad + seqlen].clone()
+                )
+                l.attention.cache_v[idx, new_pad : new_pad + seqlen] = (
+                    l.attention.cache_v[idx, old_pad : old_pad + seqlen].clone()
+                )
                 l.attention.cache_k[idx, :new_pad] = 0
                 l.attention.cache_v[idx, :new_pad] = 0
 

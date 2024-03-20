@@ -53,9 +53,11 @@ class CustomHandler(BaseHandler):
         """
         input_texts = [data.get("data") or data.get("body") for data in requests]
         input_texts = [
-            input_text.decode("utf-8")
-            if isinstance(input_text, (bytes, bytearray))
-            else input_text
+            (
+                input_text.decode("utf-8")
+                if isinstance(input_text, (bytes, bytearray))
+                else input_text
+            )
             for input_text in input_texts
         ]
         return input_texts

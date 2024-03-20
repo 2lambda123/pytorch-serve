@@ -2,6 +2,7 @@
 Uses JSON formatted inputs/outputs, following the structure outlined in
 https://www.tensorflow.org/tfx/serving/api_rest
 """
+
 import json
 from base64 import b64decode
 from itertools import chain

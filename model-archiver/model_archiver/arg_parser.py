@@ -11,7 +11,6 @@ from .model_archiver_config import ModelArchiverConfig
 
 # noinspection PyTypeChecker
 class ArgParser(object):
-
     """
     Argument parser for torch-model-archiver commands
     """

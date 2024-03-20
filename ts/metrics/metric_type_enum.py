@@ -1,6 +1,7 @@
 """
 Enums for the different metric types
 """
+
 import enum
 
 

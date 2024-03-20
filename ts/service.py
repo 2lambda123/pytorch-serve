@@ -1,6 +1,7 @@
 """
 CustomService class definitions
 """
+
 import logging
 import os
 import time

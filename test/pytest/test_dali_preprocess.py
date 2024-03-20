@@ -1,6 +1,7 @@
 """
 Unit test for near real-time video example
 """
+
 import os
 from pathlib import Path
 

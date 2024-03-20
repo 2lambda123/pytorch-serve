@@ -1,6 +1,7 @@
 """
 Unit test for MicroBatchHandler class.
 """
+
 import json
 import math
 import random

@@ -17,18 +17,18 @@ def vgg11_10000r_100c(execution_params):
 
 
 def resnet152_batch(execution_params):
-    execution_params[
-        "url"
-    ] = "https://torchserve.pytorch.org/mar_files/resnet-152-batch.mar"
+    execution_params["url"] = (
+        "https://torchserve.pytorch.org/mar_files/resnet-152-batch.mar"
+    )
     execution_params["requests"] = 1000
     execution_params["concurrency"] = 10
     execution_params["batch_size"] = 4
 
 
 def resnet152_batch_docker(execution_params):
-    execution_params[
-        "url"
-    ] = "https://torchserve.pytorch.org/mar_files/resnet-152-batch.mar"
+    execution_params["url"] = (
+        "https://torchserve.pytorch.org/mar_files/resnet-152-batch.mar"
+    )
     execution_params["requests"] = 1000
     execution_params["concurrency"] = 10
     execution_params["batch_size"] = 4
@@ -36,15 +36,15 @@ def resnet152_batch_docker(execution_params):
 
 
 def bert_batch(execution_params):
-    execution_params[
-        "url"
-    ] = "https://torchserve.pytorch.org/mar_files/BERTSeqClassification.mar"
+    execution_params["url"] = (
+        "https://torchserve.pytorch.org/mar_files/BERTSeqClassification.mar"
+    )
     execution_params["requests"] = 1000
     execution_params["concurrency"] = 10
     execution_params["batch_size"] = 4
-    execution_params[
-        "input"
-    ] = "../examples/Huggingface_Transformers/Seq_classification_artifacts/sample_text.txt"
+    execution_params["input"] = (
+        "../examples/Huggingface_Transformers/Seq_classification_artifacts/sample_text.txt"
+    )
 
 
 def workflow_nmt(execution_params):

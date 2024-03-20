@@ -1,6 +1,7 @@
 """
 Unit test for the TorchRec DLRM example
 """
+
 import json
 import shutil
 import sys

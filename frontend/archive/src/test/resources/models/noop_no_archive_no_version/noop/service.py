@@ -1,6 +1,7 @@
 """
 NoopService defines a no operational model handler.
 """
+
 import logging
 import time
 

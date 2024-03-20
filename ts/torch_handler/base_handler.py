@@ -456,9 +456,9 @@ class BaseHandler(abc.ABC):
                 logging.debug("Model name not found in config")
 
             result_path = os.path.join(result_path, dir_name)
-            self.profiler_args[
-                "on_trace_ready"
-            ] = torch.profiler.tensorboard_trace_handler(result_path)
+            self.profiler_args["on_trace_ready"] = (
+                torch.profiler.tensorboard_trace_handler(result_path)
+            )
             logger.info("Saving chrome trace to : %s", result_path)
 
         with profile(**self.profiler_args) as prof:

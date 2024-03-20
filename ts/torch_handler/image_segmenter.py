@@ -1,6 +1,7 @@
 """
 Module for image segmentation default handler
 """
+
 import torch
 from torchvision import transforms as T
 
