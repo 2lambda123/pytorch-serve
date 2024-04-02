@@ -1,6 +1,7 @@
 package org.pytorch.serve.wlm;
 
 import com.google.gson.JsonObject;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -255,7 +256,7 @@ public final class ModelManager {
         String line;
         StringBuilder outputString = new StringBuilder();
         BufferedReader brdr = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        while ((line = brdr.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(brdr, 5_000_000)) != null) {
             outputString.append(line + "\n");
         }
 
@@ -355,7 +356,7 @@ public final class ModelManager {
         String line;
         StringBuilder outputString = new StringBuilder();
         BufferedReader brdr = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        while ((line = brdr.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(brdr, 5_000_000)) != null) {
             outputString.append(line + "\n");
         }
 

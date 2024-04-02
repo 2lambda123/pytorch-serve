@@ -1,5 +1,6 @@
 package org.pytorch.serve.metrics;
 
+import io.github.pixee.security.BoundedLineReader;
 import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.File;
@@ -79,7 +80,7 @@ public class MetricCollector implements Runnable {
                 metricManager.setMetrics(metricsSystem);
 
                 String line;
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     if (line.isEmpty()) {
                         break;
                     }
@@ -111,7 +112,7 @@ public class MetricCollector implements Runnable {
                 }
 
                 // Collect process level metrics
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     String[] tokens = line.split(":");
                     if (tokens.length != 2) {
                         continue;

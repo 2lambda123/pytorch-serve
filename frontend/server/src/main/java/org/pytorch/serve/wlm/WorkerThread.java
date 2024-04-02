@@ -1,5 +1,6 @@
 package org.pytorch.serve.wlm;
 
+import io.github.pixee.security.BoundedLineReader;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
@@ -149,7 +150,7 @@ public class WorkerThread implements Runnable {
                 String line;
                 String[] headers = new String[3];
                 Boolean firstLine = true;
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     if (firstLine) {
                         headers = line.split(",");
                         firstLine = false;
