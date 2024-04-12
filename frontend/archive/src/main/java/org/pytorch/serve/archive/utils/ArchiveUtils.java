@@ -3,6 +3,8 @@ package org.pytorch.serve.archive.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -95,7 +97,7 @@ public final class ArchiveUtils {
 
     public static String getFilenameFromUrl(String url) {
         try {
-            URL archiveUrl = new URL(url);
+            URL archiveUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             return FilenameUtils.getName(archiveUrl.getPath());
         } catch (MalformedURLException e) {
             return FilenameUtils.getName(url);

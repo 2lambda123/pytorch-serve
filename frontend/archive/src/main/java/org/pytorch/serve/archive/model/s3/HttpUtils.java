@@ -1,5 +1,7 @@
 package org.pytorch.serve.archive.s3;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -52,7 +54,7 @@ public final class HttpUtils {
                                     + "AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY or AWS_DEFAULT_REGION");
                 }
 
-                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+                HttpURLConnection connection = (HttpURLConnection) Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
                 headers = new HashMap<>();
                 headers.put("x-amz-content-sha256", AWS4SignerBase.EMPTY_BODY_SHA256);
 
@@ -79,7 +81,7 @@ public final class HttpUtils {
                     }
                 }
             } else {
-                URL endpointUrl = new URL(url);
+                URL endpointUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 FileUtils.copyURLToFile(endpointUrl, modelLocation);
             }
         }
