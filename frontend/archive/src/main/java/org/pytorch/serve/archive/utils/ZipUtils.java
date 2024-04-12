@@ -82,7 +82,7 @@ public final class ZipUtils {
         File modelDir = new File(tmpDir, type);
         FileUtils.forceMkdir(modelDir);
 
-        File tmp = File.createTempFile(type, ".download");
+        File tmp = Files.createTempFile(type, ".download").toFile();
         FileUtils.forceDelete(tmp);
         FileUtils.forceMkdir(tmp);
 
