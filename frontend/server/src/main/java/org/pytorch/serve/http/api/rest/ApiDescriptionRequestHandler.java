@@ -33,7 +33,7 @@ public class ApiDescriptionRequestHandler extends HttpRequestHandlerChain {
         if (isApiDescription(segments)) {
             String path = decoder.path();
             if (("/".equals(path) && HttpMethod.OPTIONS.equals(req.method()))
-                    || (segments.length == 2 && segments[1].equals("api-description"))) {
+                    || (segments.length == 2 && "api-description".equals(segments[1]))) {
                 handleApiDescription(ctx);
                 return;
             }
@@ -45,7 +45,7 @@ public class ApiDescriptionRequestHandler extends HttpRequestHandlerChain {
 
     private boolean isApiDescription(String[] segments) {
         return segments.length == 0
-                || (segments.length == 2 && segments[1].equals("api-description"));
+                || (segments.length == 2 && "api-description".equals(segments[1]));
     }
 
     private void handleApiDescription(ChannelHandlerContext ctx) {

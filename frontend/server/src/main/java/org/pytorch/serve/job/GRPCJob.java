@@ -130,16 +130,16 @@ public class GRPCJob extends Job {
                 responseObserver.onNext(reply);
                 if (cmd == WorkerCommands.PREDICT
                         || (cmd == WorkerCommands.STREAMPREDICT
-                                && responseHeaders
-                                        .get(RequestInput.TS_STREAM_NEXT)
-                                        .equals("false"))) {
+                                && "false"
+                                        .equals(responseHeaders
+                                        .get(RequestInput.TS_STREAM_NEXT)))) {
                     responseObserver.onCompleted();
                     logQueueTime();
                 } else if (cmd == WorkerCommands.STREAMPREDICT2
                         && (responseHeaders.get(RequestInput.TS_STREAM_NEXT) == null
-                                || responseHeaders
-                                        .get(RequestInput.TS_STREAM_NEXT)
-                                        .equals("false"))) {
+                                || "false"
+                                        .equals(responseHeaders
+                                        .get(RequestInput.TS_STREAM_NEXT)))) {
                     logQueueTime();
                 }
                 break;

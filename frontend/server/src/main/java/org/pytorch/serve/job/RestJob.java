@@ -148,7 +148,7 @@ public class RestJob extends Job {
         if (responseHeaders != null && responseHeaders.containsKey(RequestInput.TS_STREAM_NEXT)) {
             resp = new DefaultHttpResponse(HttpVersion.HTTP_1_1, status, false);
             numStreams =
-                    responseHeaders.get(RequestInput.TS_STREAM_NEXT).equals("true")
+                    "true".equals(responseHeaders.get(RequestInput.TS_STREAM_NEXT))
                             ? numStreams + 1
                             : -1;
 

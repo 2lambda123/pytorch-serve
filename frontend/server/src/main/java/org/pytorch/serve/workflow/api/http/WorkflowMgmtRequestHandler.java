@@ -96,7 +96,7 @@ public class WorkflowMgmtRequestHandler extends HttpRequestHandlerChain {
     private boolean isManagementReq(String[] segments) {
         return segments.length == 0
                 || ((segments.length >= 2 && segments.length <= 4)
-                        && segments[1].equals("workflows"));
+                        && "workflows".equals(segments[1]));
     }
 
     private void handleListWorkflows(ChannelHandlerContext ctx, QueryStringDecoder decoder) {

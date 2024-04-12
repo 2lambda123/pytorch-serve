@@ -44,17 +44,17 @@ public class OpenInferenceProtocolRequestHandler extends HttpRequestHandlerChain
 
         String concatenatedSegments = String.join("/", segments).trim();
         logger.info("Handling OIP http requests");
-        if (concatenatedSegments.equals(SERVER_READY_API)) {
+        if (SERVER_READY_API.equals(concatenatedSegments)) {
             // for serve ready check
             JsonObject response = new JsonObject();
             response.addProperty("ready", true);
             NettyUtils.sendJsonResponse(ctx, response);
-        } else if (concatenatedSegments.equals(SERVER_LIVE_API)) {
+        } else if (SERVER_LIVE_API.equals(concatenatedSegments)) {
             // for serve live check
             JsonObject response = new JsonObject();
             response.addProperty("live", true);
             NettyUtils.sendJsonResponse(ctx, response);
-        } else if (concatenatedSegments.equals(SERVER_METADATA_API)) {
+        } else if (SERVER_METADATA_API.equals(concatenatedSegments)) {
             // For fetch server metadata
             JsonArray supportedExtensions = new JsonArray();
             JsonObject response = new JsonObject();

@@ -102,9 +102,9 @@ public class InferenceRequestHandler extends HttpRequestHandlerChain {
                 handleKFV1Predictions(ctx, req, segments, true);
             }
         } else if (isKFV2InferenceReq(segments)) {
-            if (segments[4].equals("infer")) {
+            if ("infer".equals(segments[4])) {
                 handleKFV2Predictions(ctx, req, segments, false);
-            } else if (segments[4].equals("explain")) {
+            } else if ("explain".equals(segments[4])) {
                 handleKFV2Predictions(ctx, req, segments, true);
             }
         } else {
@@ -115,15 +115,15 @@ public class InferenceRequestHandler extends HttpRequestHandlerChain {
     private boolean isInferenceReq(String[] segments) {
         return segments.length == 0
                 || (segments.length >= 2
-                        && (segments[1].equals("ping")
-                                || segments[1].equals("predictions")
-                                || segments[1].equals("explanations")
-                                || segments[1].equals("api-description")
-                                || segments[1].equals("invocations")
+                        && ("ping".equals(segments[1])
+                                || "predictions".equals(segments[1])
+                                || "explanations".equals(segments[1])
+                                || "api-description".equals(segments[1])
+                                || "invocations".equals(segments[1])
                                 || endpointMap.containsKey(segments[1])))
-                || (segments.length == 4 && segments[1].equals("models"))
-                || (segments.length == 3 && segments[2].equals("predict"))
-                || (segments.length == 4 && segments[3].equals("predict"));
+                || (segments.length == 4 && "models".equals(segments[1]))
+                || (segments.length == 3 && "predict".equals(segments[2]))
+                || (segments.length == 4 && "predict".equals(segments[3]));
     }
 
     private boolean isKFV1InferenceReq(String[] segments) {
@@ -137,7 +137,7 @@ public class InferenceRequestHandler extends HttpRequestHandlerChain {
         return segments.length == 5
                 && "v2".equals(segments[1])
                 && "models".equals(segments[2])
-                && (segments[4].equals("infer") || segments[4].equals("explain"));
+                && ("infer".equals(segments[4]) || "explain".equals(segments[4]));
     }
 
     private void validatePredictionsEndpoint(String[] segments) {

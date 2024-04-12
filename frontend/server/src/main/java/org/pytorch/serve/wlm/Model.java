@@ -278,7 +278,7 @@ public class Model {
     }
 
     public void removeJobQueue(String threadId) {
-        if (!threadId.equals(DEFAULT_DATA_QUEUE)) {
+        if (!DEFAULT_DATA_QUEUE.equals(threadId)) {
             jobsDb.remove(threadId);
         }
     }

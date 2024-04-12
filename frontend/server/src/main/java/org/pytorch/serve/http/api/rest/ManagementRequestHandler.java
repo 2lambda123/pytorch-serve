@@ -124,7 +124,7 @@ public class ManagementRequestHandler extends HttpRequestHandlerChain {
 
     private boolean isManagementReq(String[] segments) {
         return segments.length == 0
-                || ((segments.length >= 2 && segments.length <= 4) && segments[1].equals("models"))
+                || ((segments.length >= 2 && segments.length <= 4) && "models".equals(segments[1]))
                 || (segments.length == 5 && "set-default".equals(segments[4]))
                 || endpointMap.containsKey(segments[1]);
     }
