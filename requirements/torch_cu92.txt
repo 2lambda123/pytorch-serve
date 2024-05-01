@@ -1,5 +1,5 @@
 -r torch_common.txt
 torch==2.2.1+cu121
-torchvision==0.9.1+cu92
+torchvision==0.18.0+cu121
 torchtext==0.9.1
 torchaudio==0.8.1
