@@ -1,5 +1,6 @@
 package org.pytorch.serve.archive.utils;
 
+import io.github.pixee.security.ZipSecurity;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -25,7 +26,7 @@ public final class ZipUtils {
     private ZipUtils() {}
 
     public static void unzip(InputStream is, File dest) throws IOException {
-        try (ZipInputStream zis = new ZipInputStream(is)) {
+        try (ZipInputStream zis = ZipSecurity.createHardenedInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 File file = new File(dest, entry.getName());
