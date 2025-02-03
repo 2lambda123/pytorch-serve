@@ -78,7 +78,7 @@ class TestOtfCodecHandler:
             b"\x00\x00\x00\x01",
             b"\x00\x00\x00\x07",
             b"handler",
-            b"\xFF\xFF\xFF\xFF",
+            b"\xff\xff\xff\xff",
             b"\x00\x00\x00\x08",
             b"envelope",
             b"\x01",
@@ -107,15 +107,15 @@ class TestOtfCodecHandler:
             b"I",
             b"\x00\x00\x00\x0a",
             b"request_id",
-            b"\xFF\xFF\xFF\xFF",
+            b"\xff\xff\xff\xff",
             b"\x00\x00\x00\x0a",
             b"input_name",
-            b"\x00\x00\x00\x0F",
+            b"\x00\x00\x00\x0f",
             b"application/json",
-            b"\x00\x00\x00\x0F",
+            b"\x00\x00\x00\x0f",
             b'{"data":"value"}',
-            b"\xFF\xFF\xFF\xFF",  # end of parameters
-            b"\xFF\xFF\xFF\xFF",  # end of batch
+            b"\xff\xff\xff\xff",  # end of parameters
+            b"\xff\xff\xff\xff",  # end of batch
         ]
         cmd, ret = codec.retrieve_msg(socket_patches.socket)
 
@@ -141,15 +141,15 @@ class TestOtfCodecHandler:
             b"I",
             b"\x00\x00\x00\x0a",
             b"request_id",
-            b"\xFF\xFF\xFF\xFF",
+            b"\xff\xff\xff\xff",
             b"\x00\x00\x00\x0a",
             b"input_name",
             b"\x00\x00\x00\x0a",
             b"text/plain",
             b"\x00\x00\x00\x0a",
             bytes("text_value测试", "utf-8"),
-            b"\xFF\xFF\xFF\xFF",  # end of parameters
-            b"\xFF\xFF\xFF\xFF",  # end of batch
+            b"\xff\xff\xff\xff",  # end of parameters
+            b"\xff\xff\xff\xff",  # end of batch
         ]
         cmd, ret = codec.retrieve_msg(socket_patches.socket)
 
@@ -171,14 +171,14 @@ class TestOtfCodecHandler:
             b"I",
             b"\x00\x00\x00\x0a",
             b"request_id",
-            b"\xFF\xFF\xFF\xFF",
+            b"\xff\xff\xff\xff",
             b"\x00\x00\x00\x0a",
             b"input_name",
             b"\x00\x00\x00\x00",
             b"\x00\x00\x00\x06",
             b"binary",
-            b"\xFF\xFF\xFF\xFF",  # end of parameters
-            b"\xFF\xFF\xFF\xFF",  # end of batch
+            b"\xff\xff\xff\xff",  # end of parameters
+            b"\xff\xff\xff\xff",  # end of batch
         ]
         cmd, ret = codec.retrieve_msg(socket_patches.socket)
 

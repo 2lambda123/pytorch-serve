@@ -1,4 +1,4 @@
-""" The repository to serve the Torchserve Models in the kserve side"""
+"""The repository to serve the Torchserve Models in the kserve side"""
 
 import logging
 

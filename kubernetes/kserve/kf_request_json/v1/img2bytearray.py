@@ -1,4 +1,4 @@
-""" Converts an image to bytesarray """
+"""Converts an image to bytesarray"""
 
 import argparse
 import base64
