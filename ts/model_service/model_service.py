@@ -1,5 +1,4 @@
-"""`ModelService` defines an API for base model service.
-"""
+"""`ModelService` defines an API for base model service."""
 
 # pylint: disable=W0223
 

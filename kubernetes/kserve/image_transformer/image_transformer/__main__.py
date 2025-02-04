@@ -1,4 +1,4 @@
-""" The images are Transformed and sent to the predictor or explainer """
+"""The images are Transformed and sent to the predictor or explainer"""
 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
